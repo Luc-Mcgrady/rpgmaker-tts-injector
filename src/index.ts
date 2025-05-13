@@ -24,3 +24,9 @@ element.onclick = go
 element.innerText = "说"
 element.style.position = "absolute"
 element.style.zIndex = "10"
+
+document.addEventListener("keydown", (ev) => {
+    if (ev.key == "a") {
+        go()
+    }
+})
