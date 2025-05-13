@@ -1,10 +1,10 @@
 import { EdgeSpeechTTS } from "@lobehub/tts";
 
-const audioCtx = new AudioContext
-const source = audioCtx.createBufferSource()
-source.connect(audioCtx.destination)
-
 async function go() {
+    const audioCtx = new AudioContext
+    const source = audioCtx.createBufferSource()
+    source.connect(audioCtx.destination)
+
     //@ts-ignore
     const text: string = $gameMessage.allText().replace(/【.+】|~|♥/g, "")
     // const text = "nihao"
@@ -18,4 +18,9 @@ async function go() {
     console.log(source, resp)
 }
 
-go()
+const element = document.createElement("button")
+document.body.appendChild(element)
+element.onclick = go
+element.innerText = "说"
+element.style.position = "absolute"
+element.style.zIndex = "10"
