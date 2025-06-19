@@ -6,7 +6,7 @@ async function go() {
     source.connect(audioCtx.destination)
 
     //@ts-ignore
-    const text: string = $gameMessage.allText().replace(/\\.\[.+\]|\\\{|【.+】|~|♥/g, "")
+    const text: string = $gameMessage.allText().replace(/\\.\[.+\]|\\|\||\\\{|【.+】|~|♥/g, "")
     // const text = "nihao"
     //const voice = tts.voices.findByName('English (United States)');
     
