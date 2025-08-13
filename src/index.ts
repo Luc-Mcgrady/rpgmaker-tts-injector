@@ -6,13 +6,30 @@ if (!globalThis.crypto.randomUUID) {
     globalThis.crypto.randomUUID = v4
 }
 
+function getPlainTextFromGameMessage(): string {
+    //@ts-ignore
+    const raw = $gameMessage.allText();
+
+    // Create a dummy Window_Base just to access convertEscapeCharacters
+    //@ts-ignore
+    const dummyWindow = new Window_Base(0, 0, 0, 0);
+    const converted = dummyWindow.convertEscapeCharacters(raw);
+
+    // Strip any remaining escape codes (optional)
+    return converted.replace(/\x1b\w+\[.*?\]/g, '').replace(/\x1b\w/g, '');
+}
+
 async function go() {
+    //@ts-ignore
+    if (!$gameMessage.hasText()) {
+        return;
+    }
+
     const audioCtx = new AudioContext
     const source = audioCtx.createBufferSource()
     source.connect(audioCtx.destination)
 
-    //@ts-ignore
-    const text: string = $gameMessage.allText().replace(/\\.\[.+\]|\\|\||\\\{|【.+】|~|♥/g, "")
+    const text = getPlainTextFromGameMessage()
     // const text = "nihao"
     //const voice = tts.voices.findByName('English (United States)');
     
