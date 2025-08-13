@@ -5,4 +5,5 @@ await esbuild.build({
     outfile: "dist/userscript.js",
     bundle: true,
     minify: true,
+    platform: "browser"
 })

@@ -10,11 +10,10 @@
   "author": "Luc Mcgrady",
   "license": "MIT",
   "dependencies": {
-    "@lobehub/tts": "^2.0.0",
-    "google-translate-tts": "^0.4.0-dev"
+    "@echristian/edge-tts": "^0.0.14",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@comuns-rpgmaker/rpg-maker-mz-typescript": "^0.1.2",
     "esbuild": "^0.25.4",
     "typescript": "^5.8.3"
   }

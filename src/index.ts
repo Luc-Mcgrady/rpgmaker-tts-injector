@@ -1,4 +1,10 @@
-import { EdgeSpeechTTS } from "@lobehub/tts";
+import { synthesize } from "@echristian/edge-tts";
+import { v4 } from 'uuid';
+
+if (!globalThis.crypto.randomUUID) {
+    // @ts-ignore
+    globalThis.crypto.randomUUID = v4
+}
 
 async function go() {
     const audioCtx = new AudioContext
@@ -10,10 +16,9 @@ async function go() {
     // const text = "nihao"
     //const voice = tts.voices.findByName('English (United States)');
     
-    const tts = new EdgeSpeechTTS({locale: "zh-CN"})
-    const resp = await tts.createAudio({input: text, options: {voice: "zh-CN-XiaoxiaoNeural"}})
-
-    source.buffer = resp
+    const { audio } = await synthesize({text, voice: "zh-CN-XiaoxiaoNeural", language: "zh-CN"})
+    const audioBuffer = await audio.arrayBuffer()
+    source.buffer = await audioCtx.decodeAudioData(audioBuffer)
     source.start()
     console.log(text)
 }
