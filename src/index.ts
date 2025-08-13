@@ -47,7 +47,7 @@ element.style.position = "absolute"
 element.style.zIndex = "10"
 
 document.addEventListener("keydown", (ev) => {
-    if (ev.key == "q") {
+    if (ev.key == hotkey) {
         go()
     }
 })

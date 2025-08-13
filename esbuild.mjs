@@ -9,5 +9,6 @@ await esbuild.build({
     banner: {js: `// https://gist.github.com/BettyJJ/17cbaa1de96235a7f5773b8690a20462
 const short_name = "en-US-AvaNeural";
 const locale = "en-US";
+const hotkey = "q";
 `}
 })
