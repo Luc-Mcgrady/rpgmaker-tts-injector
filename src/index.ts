@@ -1,4 +1,5 @@
 import { synthesize } from "@echristian/edge-tts";
+
 import { v4 } from 'uuid';
 
 if (!globalThis.crypto.randomUUID) {
@@ -31,7 +32,7 @@ async function go() {
 
     const text = getPlainTextFromGameMessage()
     
-    const { audio } = await synthesize({text, voice, language})
+    const { audio } = await synthesize({text, voice: short_name, language: locale})
     const audioBuffer = await audio.arrayBuffer()
     source.buffer = await audioCtx.decodeAudioData(audioBuffer)
     source.start()
