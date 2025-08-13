@@ -5,5 +5,9 @@ await esbuild.build({
     outfile: "dist/userscript.js",
     bundle: true,
     minify: true,
-    platform: "browser"
+    platform: "browser",
+    banner: {js: `
+const voice = "en-US-AvaNeural"
+const language = "en-US"
+`}
 })

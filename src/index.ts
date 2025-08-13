@@ -30,10 +30,8 @@ async function go() {
     source.connect(audioCtx.destination)
 
     const text = getPlainTextFromGameMessage()
-    // const text = "nihao"
-    //const voice = tts.voices.findByName('English (United States)');
     
-    const { audio } = await synthesize({text, voice: "zh-CN-XiaoxiaoNeural", language: "zh-CN"})
+    const { audio } = await synthesize({text, voice, language})
     const audioBuffer = await audio.arrayBuffer()
     source.buffer = await audioCtx.decodeAudioData(audioBuffer)
     source.start()
@@ -43,12 +41,12 @@ async function go() {
 const element = document.createElement("button")
 document.body.appendChild(element)
 element.onclick = go
-element.innerText = "说"
+element.innerText = "TTS"
 element.style.position = "absolute"
 element.style.zIndex = "10"
 
 document.addEventListener("keydown", (ev) => {
-    if (ev.key == "a") {
+    if (ev.key == "q") {
         go()
     }
 })
